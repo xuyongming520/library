@@ -1,43 +1,80 @@
 <template>
   <div id="login">
     <main>
-      <div class="login">
+      <el-card class="login">
         <header>
-          <svg-icon icon-class="book" class-name="icon" />
+          <svg-icon icon-class="book" class-name="icon" class="loginIcon"/>
           <div class="logo" >Library</div>
         </header>
-        <el-form
-          :rules="rules"
-          :model="loginForm"
-          status-icon
-          ref="loginForm"
-          label-width="0px"
-          class="demo-ruleForm"
-        >
-          <el-form-item prop="email">
-            <el-input v-model="loginForm.email" placeholder="证件号"></el-input>
-          </el-form-item>
-          <el-form-item prop="password">
-            <el-input
-              type="password"
-              v-model="loginForm.password"
-              placeholder="密码"
-              show-password
-            >
-            </el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="submitForm('loginForm')" class="button">登录</el-button>
-          </el-form-item>
-        </el-form>
-      </div>
+        <section>
+          <el-form
+            :model="loginForm"
+            status-icon
+            :rules="rules"
+            ref="loginForm"
+            label-width="100px"
+            class="demo-ruleForm">
+            <el-form-item label="账号" prop="uniqueId" placeholder="请输入账号" style="width:400px">
+              <el-input v-model="loginForm.uniqueId"></el-input>
+            </el-form-item>
+            <el-form-item label="密码" prop="password" placeholder="请输入密码" style="width:400px">
+              <el-input type="password" v-model="loginForm.password"></el-input>
+            </el-form-item>
+            <el-form-item >
+              <el-button type="primary" @click="submit" style="margin-top:15px">登陆</el-button>
+              <el-button @click="register" style="float:right;margin:15px 70px">注册</el-button>
+            </el-form-item>
+          </el-form>
+        </section>
+      </el-card>
     </main>
   </div>
 </template>
 
 <script>
+import * as users from '../../api/users';
+
 export default {
   name: 'login',
+  data() {
+    return {
+      loginForm: {
+        uniqueId: '',
+        password: '',
+      },
+      rules: {
+        uniqueId: [
+          { required: true, message: '请输入账号', trigger: 'blur' },
+        ],
+        passw1: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+        ],
+      },
+    };
+  },
+  methods: {
+    submit() {
+      console.log(this.loginForm);
+      users.login(this.loginForm)
+        .then((result) => {
+          console.log(result);
+          switch (result.data.code) {
+            case 0:
+              this.$message.error('账号密码错误！');
+              break;
+            case 1:
+              this.$router.push({ name: '/' });
+              this.$store.dispatch('login', this.loginForm.uniqueId);
+              break;
+            default:
+              break;
+          }
+        });
+    },
+    register() {
+      this.$router.push({ name: 'register' });
+    },
+  },
 };
 </script>
 
@@ -54,7 +91,26 @@ export default {
     justify-content: center;
     align-items: center;
     .login{
-
+      width: 500px;
+      height: 350px;
+      border-radius: 5px 5px 5px 5px;
+      header{
+        height:30%;
+        display:flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        .loginIcon{
+          height: 60px;
+          width: 80px;
+        }
+        .logo{
+          font-size: 1.8em;
+        }
+      }
+    }
+    section{
+      margin-top: 20px;
     }
   }
 }
