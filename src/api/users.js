@@ -16,8 +16,7 @@ export function register({
   });
 }
 
-export function login({ uniqueId, password }) {
-  console.log({ uniqueId, password });
+export function login(uniqueId, password) {
   return request({
     url: '/users/login',
     method: 'post',

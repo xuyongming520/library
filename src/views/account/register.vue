@@ -31,15 +31,16 @@
                 placeholder="请再次输入密码">
               </el-input>
             </el-form-item>
-            <el-form-item label="姓名" prop="name" style="width:400px">
-              <el-input v-model="registerForm.name" placeholder="请输入姓名"></el-input>
-            </el-form-item>
             <el-form-item label="类别" prop="classId" style="width:400px">
               <el-select v-model="registerForm.classId" placeholder="请选择角色类别">
                 <el-option label="老师" value=1></el-option>
                 <el-option label="学生" value=0></el-option>
               </el-select>
             </el-form-item>
+            <el-form-item label="姓名" prop="name" style="width:400px">
+              <el-input v-model="registerForm.name" placeholder="请输入姓名"></el-input>
+            </el-form-item>
+
             <el-form-item>
               <el-button
                 @click="register"

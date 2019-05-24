@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import * as users from '../../api/users';
+// import * as users from '../../api/users';
 
 export default {
   name: 'login',
@@ -53,23 +53,16 @@ export default {
     };
   },
   methods: {
-    submit() {
-      console.log(this.loginForm);
-      users.login(this.loginForm)
-        .then((result) => {
-          console.log(result);
-          switch (result.data.code) {
-            case 0:
-              this.$message.error('账号密码错误！');
-              break;
-            case 1:
-              this.$router.push({ name: '/' });
-              this.$store.dispatch('login', this.loginForm.uniqueId);
-              break;
-            default:
-              break;
-          }
-        });
+    async submit() {
+      // console.log(this.loginForm);
+      await this.$store.dispatch('login', this.loginForm);
+      if (this.$store.getters.isLogin) {
+        this.$router.push({ name: 'homepage' });
+        this.$message.success('登陆成功');
+      } else {
+        this.$message.error('账号密码错误');
+      }
+      this.$store.dispatch('getUniqueId', this.loginForm);
     },
     register() {
       this.$router.push({ name: 'register' });

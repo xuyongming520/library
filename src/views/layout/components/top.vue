@@ -8,7 +8,9 @@
             <span @click="handleToRegister()">注册</span>
           </div>
           <div class="user" v-else>
-            <span @click="handleToUserInfo()">XyM</span>
+            <span @click="handleToUserInfo()">
+              {{this.uniqueId}}
+            </span>
             <span @click="handleToLogout()">退出登陆</span>
           </div>
         </section>
@@ -20,9 +22,9 @@
           <svg-icon icon-class="book" class-name="icon" @click="handleToHomepage()" />
           <div class="logo" @click="handleToHomepage()">Library</div>
           <nav>
-            <router-link tag="a" to="/search">书目检索</router-link>
-            <router-link tag="a" to="/class">分类浏览</router-link>
-            <router-link tag="a" to="/mine">我的图书馆</router-link>
+            <a @click="search">书目检索</a>
+            <a @click="classify">分类浏览</a>
+            <a @click="library">我的图书馆</a>
           </nav>
         </section>
       </main>
@@ -38,7 +40,7 @@ export default {
   computed: {
     ...mapGetters([
       'isLogin',
-      'avator',
+      'uniqueId',
     ]),
   },
   methods: {
@@ -58,6 +60,20 @@ export default {
     handleToUserInfo() {
       this.$router.push({ name: 'userInfo' });
     },
+    search() {
+      this.$router.push({ name: 'search' });
+    },
+    classify() {
+      this.$router.push({ name: 'classify' });
+    },
+    library() {
+      this.$router.push({ name: 'library' });
+    },
+  },
+  created() {
+    console.log('nav');
+    console.log(this.uniqueId);
+    console.log(this.isLogin);
   },
 };
 
@@ -83,7 +99,7 @@ export default {
       display: flex;
       justify-content: flex-end;
       .loginStatus{
-        width: 120px;
+        width: 150px;
         .login,.user{
           display: flex;
           justify-content: space-between;

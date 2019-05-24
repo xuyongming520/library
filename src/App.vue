@@ -16,9 +16,8 @@ export default {
     ]),
   },
   created() {
-    console.log(1);
     if (this.isLogin) {
-      this.$store.dispatch('getAvator');
+      // this.$store.dispatch('getUniqueId');
     }
   },
 };
