@@ -34,9 +34,8 @@ export default {
 
   main{
     width: 100%;
-    height:50%;
     min-height:calc(100% - 170px - 100px);
-    background: $white;
+    background: #F2F6FC;
   }
 
   footer{
@@ -48,6 +47,7 @@ export default {
       width: $detailWidth;
       margin: auto;
       border-top: 1px solid gray;
+      background: $white;
       .logo{
         width: 40px;
         height: 60px;

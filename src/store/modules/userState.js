@@ -6,6 +6,7 @@ const login = {
   state: {
     isLogin: !!auth.getToken(),
     uniqueId: auth.getUniqueId(),
+    // balance: auth.getBalance(),
   },
   mutations: {
     SET_ISLOGIN(state, isLogin) {
@@ -14,6 +15,9 @@ const login = {
     SET_UNIQUEID(state, uniqueId) {
       state.uniqueId = uniqueId;
     },
+    // SET_BALANCE(state, balance) {
+    //   state.balance = balance;
+    // },
   },
   actions: {
     login({ commit }, data) {
@@ -26,7 +30,6 @@ const login = {
                 this.$message.error('账号密码错误');
                 break;
               case 1:
-                console.log(res.data.data);
                 auth.setToken(res.data.data);
                 commit('SET_ISLOGIN', true);
                 resolve('1');

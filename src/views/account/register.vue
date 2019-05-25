@@ -121,9 +121,7 @@ export default {
 
 <style lang='scss' scoped>
 #register{
-  width: 100%;
   height: 100%;
-  background: $white;
   main{
     width: $detailWidth;
     margin: 0 auto;
@@ -135,6 +133,7 @@ export default {
       width: 500px;
       height: 550px;
       border-radius: 5px 5px 5px 5px;
+      margin-top:30px;
       header{
         height:30%;
         display:flex;

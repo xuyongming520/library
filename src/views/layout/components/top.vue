@@ -70,11 +70,6 @@ export default {
       this.$router.push({ name: 'library' });
     },
   },
-  created() {
-    console.log('nav');
-    console.log(this.uniqueId);
-    console.log(this.isLogin);
-  },
 };
 
 </script>

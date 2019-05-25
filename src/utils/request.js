@@ -7,7 +7,7 @@ import { getToken, removeToken } from '@/utils/auth';
 
 // 创建一个 axios 实例
 const service = axios.create({
-  baseURL: 'http://localhost:8081', // TODO:修改成真实的后台地址
+  baseURL: 'http://192.168.10.112:8080', // TODO:修改成真实的后台地址
   timeout: 5000, // 请求超时设置
 });
 

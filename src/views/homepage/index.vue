@@ -17,7 +17,7 @@ export default {
 
 <style lang='scss' scoped>
 #homepage{
-  height:100%;
+  height:667px;
   header{
     height: 100%;
     background: url('../../assets/banner.jpg') no-repeat center center;

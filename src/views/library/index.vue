@@ -4,12 +4,12 @@
 
     </header>
     <main>
+        <div v-if='!isLogin' class="tips">您还未登录，请先登陆</div>
         <el-table
           :data="borrowList"
           style="width: 100%"
-          :row-class-name="tableRowClassName"
           :default-sort = "{prop: 'isReturn', order: 'ascending'}"
-          >
+          v-else>
           <el-table-column
             prop="pkId"
             label="编号"
@@ -26,8 +26,8 @@
             width="250">
           </el-table-column>
           <el-table-column
-            prop="actualReturn"
-            label="归还时间"
+            prop="gmtReturn"
+            label="到期时间"
             width="250">
           </el-table-column>
           <el-table-column
@@ -73,6 +73,7 @@ export default {
       isReturnState: [
         { value: 0, display_name: '在借阅' },
         { value: 1, display_name: '已归还' },
+        { value: 2, display_name: '续借中' },
       ],
     };
   },
@@ -93,10 +94,6 @@ export default {
             this.borrowList = result.data.data.list;
           }
         });
-    },
-
-    tableRowClassName({ row, rowIndex }) {
-      console.log({ row, rowIndex });
     },
     renew() {
 
@@ -121,7 +118,12 @@ export default {
     width: $detailWidth;
     margin: 0 auto;
     height: 100%;
+    margin-top:20px;
     padding:20px;
+    .tips{
+      font-size: 2em;
+      color:#C0C4CC
+    }
   }
 }
 </style>

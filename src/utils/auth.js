@@ -2,6 +2,7 @@ import Cookies from 'js-cookie';
 
 const TokenKey = 'user-token';
 const UniqueIdKey = 'user-uniqueId';
+// const BalanceKey = 'user-balance';
 
 export function getToken() {
   return Cookies.get(TokenKey);
@@ -26,3 +27,15 @@ export function setUniqueId(uniqueId) {
 export function removeUniqueId() {
   return Cookies.remove(UniqueIdKey);
 }
+
+// export function getBalance() {
+//   return Cookies.get(BalanceKey);
+// }
+
+// export function setBalance(balance) {
+//   return Cookies.set(BalanceKey, balance);
+// }
+
+// export function removeBalance() {
+//   return Cookies.remove(BalanceKey);
+// }

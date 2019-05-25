@@ -76,10 +76,10 @@ const router = new Router({
       redirect: '/bookDetail/index.vue',
       children: [
         {
-          path: '/bookDetail/index',
+          path: '/bookDetail/index/:id',
           name: 'bookDetail',
           meta: {
-            title: '我的图书馆',
+            title: '图书详情',
           },
           component: () => import('@/views/bookDetail/index.vue'),
         },
