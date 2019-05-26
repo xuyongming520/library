@@ -27,6 +27,20 @@ export function login(uniqueId, password) {
   });
 }
 
+export function info() {
+  return request({
+    url: '/users',
+    method: 'get',
+  });
+}
+
+export function recharge(balance) {
+  return request({
+    url: '/users/balance',
+    method: 'post',
+    data: { balance },
+  });
+}
 // export function changePassword(oldPassword, newPassword) {
 //   return request({
 //     url: '/users',
