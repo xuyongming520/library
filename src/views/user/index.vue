@@ -1,5 +1,7 @@
 <template>
-  <div id="user"></div>
+  <div id="user">
+    12
+  </div>
 </template>
 
 <script>

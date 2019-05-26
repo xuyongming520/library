@@ -23,20 +23,22 @@
           <el-table-column
             prop="gmtCreate"
             label="借阅时间"
-            width="250">
+            width="220">
           </el-table-column>
           <el-table-column
             prop="gmtReturn"
             label="到期时间"
-            width="250">
+            width="220">
           </el-table-column>
           <el-table-column
             prop="fine"
-            label="罚款">
+            label="罚款"
+            width="110">
           </el-table-column>
           <el-table-column
             prop="isReturn"
-            label="状态">
+            label="状态"
+            width="110">
             <template slot-scope="scope">
               {{ isReturnState[scope.row.isReturn].display_name }}
             </template>
@@ -44,11 +46,15 @@
           <el-table-column
             label="操作"
             >
-            <template slot-scope="scope" v-if="!scope.row.isReturn">
+            <template slot-scope="scope" >
               <el-button
               size="mini"
               type="primary"
-              @click="renew(scope.row.problemId)">续借</el-button>
+              @click="renew(scope.row.pkId)" v-if="scope.row.isReturn===0">续借</el-button>
+               <el-button
+              size="mini"
+              type="primary"
+              @click="revert(scope.row.pkId)" v-if="scope.row.isReturn!==1">归还</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -87,7 +93,6 @@ export default {
     getList() {
       borrow.queryList(this.listQuery)
         .then((result) => {
-          console.log(result.data.data.list);
           if (result.code === 0) {
             this.borrowList = [];
           } else {
@@ -95,8 +100,38 @@ export default {
           }
         });
     },
-    renew() {
-
+    renew(id) {
+      console.log(id);
+      borrow.reLend(id)
+        .then((result) => {
+          console.log(result);
+          switch (result.code) {
+            case 0:
+              this.$message.error('续借失败');
+              break;
+            case 1:
+              this.$message.success('续借成功');
+              break;
+            default:
+              break;
+          }
+        });
+    },
+    revert(id) {
+      borrow.sendBack(id)
+        .then((result) => {
+          console.log(result);
+          switch (result.code) {
+            case 0:
+              this.$message.error('归还失败');
+              break;
+            case 1:
+              this.$message.success('归还成功');
+              break;
+            default:
+              break;
+          }
+        });
     },
   },
   created() {
@@ -120,7 +155,9 @@ export default {
     height: 100%;
     margin-top:20px;
     padding:20px;
+    text-align: center;
     .tips{
+      margin-top:100px;
       font-size: 2em;
       color:#C0C4CC
     }

@@ -58,7 +58,7 @@ export default {
       this.$router.push({ name: 'register' });
     },
     handleToUserInfo() {
-      this.$router.push({ name: 'userInfo' });
+      this.$router.push({ name: 'user' });
     },
     search() {
       this.$router.push({ name: 'search' });

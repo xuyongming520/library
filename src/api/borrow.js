@@ -19,3 +19,24 @@ export function borrow(id) {
     data: { booksId: id },
   });
 }
+
+export function reLend(pkId) {
+  return request({
+    url: '/books/lend/relend',
+    method: 'post',
+    data: {
+      pkId,
+    },
+  });
+}
+
+export function sendBack(pkId) {
+  return request({
+    url: '/books/lend',
+    method: 'put',
+    data: {
+      pkId,
+      isReturn: 1,
+    },
+  });
+}

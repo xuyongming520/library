@@ -11,7 +11,7 @@
             <el-tag class="tag"
               v-for="(item,key) of bookClassList"
               :key="key"
-              @click="handleClass">
+              @click="handleClass(item.pkId)">
               {{item.name}}
             </el-tag>
           </div>
@@ -65,6 +65,7 @@ export default {
         name: null,
         author: null,
         publishers: null,
+        classId: null,
       },
     };
   },
@@ -108,8 +109,25 @@ export default {
       this.listQuery.page = val;
       this.getBookList();
     },
-    handleClass() {
-      console.log(123);
+    handleClass(id) {
+      this.listQuery.classId = id;
+      bookInfo.queryList(this.listQuery)
+        .then((result) => {
+          console.log(result);
+          switch (result.data.code) {
+            case 0:
+              this.$message.warning('未查询到该类型的书籍');
+              this.bookList = [];
+              this.total = 0;
+              break;
+            case 1:
+              this.bookList = result.data.data.list;
+              this.total = result.data.data.totalCount;
+              break;
+            default:
+              break;
+          }
+        });
     },
     handletoDetail(id) {
       this.$router.push({ name: 'bookDetail', params: { id } });

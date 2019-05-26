@@ -153,6 +153,9 @@ export default {
               case 2:
                 this.$message.info('你已经借过该书');
                 break;
+              case 3:
+                this.$message.warning('余额不足');
+                break;
               default:
                 break;
             }
