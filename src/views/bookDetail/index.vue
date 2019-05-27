@@ -156,6 +156,9 @@ export default {
               case 3:
                 this.$message.warning('余额不足');
                 break;
+              case 4:
+                this.$message.warning('您借阅数量已上限');
+                break;
               default:
                 break;
             }
