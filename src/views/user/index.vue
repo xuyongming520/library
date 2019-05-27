@@ -29,12 +29,12 @@
           </el-card>
         </el-col>
         <el-col :span="18">
-          <el-card class="box-card">
+          <el-card>
             <div slot="header">
               <span>欢迎回来:{{info.name}}</span>
             </div>
-            <div  class="text item">
-              列表内容
+            <div>
+
             </div>
           </el-card>
         </el-col>
