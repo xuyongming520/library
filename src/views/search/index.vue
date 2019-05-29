@@ -3,7 +3,9 @@
     <header>
       <main>
         <div class="search">
-          <el-input placeholder="关键字搜索" v-model="listQuery.name" style="width:450px;">
+          <el-input placeholder="关键字搜索"
+            v-model="input"
+            style="width:450px;">
             <el-select slot="prepend" placeholder="请选择" v-model="select" style="width:100px;">
               <el-option label="书名" value="1"></el-option>
               <el-option label="作者" value="2"></el-option>
@@ -64,7 +66,8 @@ export default {
         author: null,
         publishers: null,
       },
-      select: '',
+      select: null,
+      input: null,
       bookList: [],
       total: 0,
     };
@@ -88,6 +91,28 @@ export default {
     },
     handletoSearch() {
       this.listQuery.page = 1;
+      switch (this.select) {
+        case null:
+          this.listQuery.name = this.input;
+          this.input = null;
+          break;
+        case '1':
+          this.listQuery.name = this.input;
+          this.input = null;
+          break;
+        case '2':
+          this.listQuery.author = this.input;
+          this.input = null;
+          break;
+        case '3':
+          this.listQuery.publishers = this.input;
+          this.input = null;
+          break;
+        default:
+          this.listQuery.name = this.input;
+          this.input = null;
+          break;
+      }
       this.getBookList();
     },
     handletoDetail(id) {

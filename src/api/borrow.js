@@ -40,3 +40,11 @@ export function sendBack(pkId) {
     },
   });
 }
+
+export function chart() {
+  return request({
+    url: '/books/lend/statistic',
+    method: 'post',
+    data: { year: 2019 },
+  });
+}

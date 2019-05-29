@@ -101,10 +101,8 @@ export default {
         });
     },
     renew(id) {
-      console.log(id);
       borrow.reLend(id)
         .then((result) => {
-          console.log(result);
           switch (result.code) {
             case 0:
               this.$message.error('续借失败');
@@ -120,7 +118,6 @@ export default {
     revert(id) {
       borrow.sendBack(id)
         .then((result) => {
-          console.log(result);
           switch (result.code) {
             case 0:
               this.$message.error('归还失败');

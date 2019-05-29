@@ -34,7 +34,7 @@
               <span>欢迎回来:{{info.name}}</span>
             </div>
             <div>
-
+              <line-chart />
             </div>
           </el-card>
         </el-col>
@@ -45,6 +45,7 @@
 
 <script>
 import * as user from '@/api/users';
+import LineChart from './components/LineChart.vue';
 
 export default {
   name: 'user',
@@ -54,6 +55,9 @@ export default {
       input: 0,
       dialogVisible: false,
     };
+  },
+  components: {
+    LineChart,
   },
   methods: {
     getInfo() {
@@ -73,7 +77,6 @@ export default {
         });
     },
     Recharge() {
-      console.log(this.input);
       user.recharge(this.input)
         .then((result) => {
           switch (result.data.code) {
