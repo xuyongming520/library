@@ -2,7 +2,6 @@
 const getters = {
   isLogin: state => state.userState.isLogin,
   uniqueId: state => state.userState.uniqueId,
-  balance: state => state.userState.balance,
 };
 
 export default getters;
