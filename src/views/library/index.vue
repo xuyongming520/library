@@ -116,14 +116,17 @@ export default {
         });
     },
     revert(id) {
+      console.log(1);
       borrow.sendBack(id)
         .then((result) => {
-          switch (result.code) {
+          console.log(result);
+          switch (result.data.code) {
             case 0:
               this.$message.error('归还失败');
               break;
             case 1:
               this.$message.success('归还成功');
+              this.getList();
               break;
             default:
               break;
@@ -139,9 +142,9 @@ export default {
 
 <style lang='scss' scoped>
 #library{
-  height: 15em;
+  height: 100%;
   header{
-    height: 100%;
+    height: 15em;
     background: url('../../assets/testimonialsbg.jpg') no-repeat center center;
     background-size: cover;
     position: relative;

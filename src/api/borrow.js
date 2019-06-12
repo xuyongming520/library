@@ -12,11 +12,15 @@ export function queryList({ limit, page, userId }) {
   });
 }
 
-export function borrow(id) {
+export function borrow(id, infoId) {
+  console.log(infoId);
   return request({
     url: '/books/lend',
     method: 'post',
-    data: { booksId: id },
+    data: {
+      booksId: id,
+      pkId: infoId,
+    },
   });
 }
 

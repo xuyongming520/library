@@ -46,7 +46,7 @@
                 <el-button
                   type="primary"
                   size="mini"
-                  @click="lend(scope.row.pkId)"
+                  @click="lend(scope.row.pkId,scope.row.infoId)"
                   :disabled="stateClasses[scope.row.status].state"
                   >
                   借阅
@@ -139,9 +139,10 @@ export default {
           }
         });
     },
-    lend(id) {
+    lend(id, infoId) {
+      console.log(infoId);
       if (this.isLogin) {
-        lend.borrow(id)
+        lend.borrow(id, infoId)
           .then((result) => {
             switch (result.data.code) {
               case 0:

@@ -4,6 +4,7 @@ import request from '@/utils/request';
 export function register({
   uniqueId, password, name, classId,
 }) {
+  console.log(classId);
   return request({
     url: '/users/register',
     method: 'post',
